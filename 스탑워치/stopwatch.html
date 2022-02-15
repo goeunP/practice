@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TASKWATCH</title>
+    <link rel="stylesheet" href="stopwatch.css">
+</head>
+<body>
+    <div class="wrapper">
+        <h1>TASKWATCH</h1>
+        <h2>See how much time you can focus on your tasks ! </h2>
+        <p>
+            <span id="hours">00</span>
+            <span id="minutes">00</span>
+            <span id="seconds">00 </span>
+        </p>
+        <button id="button-start">start</button>
+        <button id="button-stop">stop</button>
+        <button id="button-reset">reset</button>
+    </div>
+
+    <script>
+        var hours=00;
+        var minutes=00;
+        var seconds=00;
+        var appendSeconds = document.getElementById("seconds")
+        var appendMinutes= document.getElementById("minutes")
+        var appendHours= document.getElementById("hours")
+        var buttonStart = document.getElementById("button-start")
+        var buttonStop = document.getElementById("button-stop")
+        var buttonReset = document.getElementById("button-reset")
+        var Interval;
+        
+        buttonStart.onclick=function(){          
+            Interval = setInterval(startTimer,1000);
+        }
+
+        buttonStop.onclick=function(){
+            clearInterval(Interval);
+        }
+
+        buttonReset.onclick=function(){
+            clearInterval(Interval);
+            seconds="00";
+            minutes="00";
+            hours="00";
+            appendSeconds.innerHTML=seconds;
+            appendMinutes.innerHTML=minutes;
+            appendHours.innerHTML=hours;
+        }
+
+        function startTimer(){
+            seconds++;
+
+            if(seconds<=9){
+                appendSeconds.innerHTML = "0"+seconds;
+            }
+            if (seconds>9){
+                appendSeconds.innerHTML = seconds;
+            }
+            if(seconds>60){
+                minutes++;
+                appendMinutes.innerHTML="0"+minutes;
+                seconds=0;
+                appendSeconds.innerHTML = "00";
+            }
+            if (minutes>9){
+                appendMinutes.innerHTML = minutes;
+            }
+            if (minutes>60){
+                hours++;
+                appendHours.innerHTML="0"+hours;
+                minutes=0;
+                appendMinutes.innerHTML="00";
+            }
+        }
+    </script>
+
+
+    
+</body>
+</html>
